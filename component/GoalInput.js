@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Modal } from 'react-native';
 
 const GoalInput = props => {
 
@@ -9,17 +9,18 @@ const GoalInput = props => {
     setEnteredGoal(enteredText);
   };
 
-  return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        placeholder="Course goal!"
-        style={styles.input} 
-        onChangeText={goalInputHandeler} 
-        value={enteredGoal}/>
-      {/* <Button title="Add" onPress={() => props.onAddGoal(enteredGoal)}/> */}
-      <Button title="Add" onPress={props.onAddGoal.bind(this, enteredGoal)}/>
-    </View>
-  )
+    return (
+      <Modal visible={true}>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Course goal!"
+            style={styles.input} 
+            onChangeText={goalInputHandeler} 
+            value={enteredGoal}/>
+          <Button title="Add" onPress={() => props.onAddGoal(enteredGoal)}/>
+        </View>
+      </Modal>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
   input: {
     width: '80%',
     borderBottomColor: 'black',
-    borderWidth: 1,
+    borderWidth: 1,   
     marginBottom: 10
   }
 });
